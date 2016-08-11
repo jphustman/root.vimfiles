@@ -40,5 +40,13 @@ NeoBundleCheck
 
 " }
 
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+
+
+
 autocmd BufNewFile,BufRead access.log,error.log set ft=apachelogs
 syntax on
