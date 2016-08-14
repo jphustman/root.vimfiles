@@ -25,6 +25,8 @@ NeoBundle 'flazz/vim-colorschemes'
 
 NeoBundle 'apachelogs.vim'
 
+NeoBundle 'terryma/vim-multiple-cursors'
+
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
@@ -46,6 +48,7 @@ set shiftwidth=2
 set expandtab
 
 
+imap jk <Esc>
 
 
 autocmd BufNewFile,BufRead access.log,error.log set ft=apachelogs
