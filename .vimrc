@@ -1,49 +1,49 @@
 " vimrc for root
 " NeoBundle
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-  set shell=/bin/sh
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
+set runtimepath+=/root/.vim/bundle/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('~/.vim/bundle')
+  call dein#begin(expand('~/.vim/bundle'))
+
+  " Let dein manage dein
   " Required:
-  set runtimepath+=/root/.vim/bundle/neobundle.vim/
+  call dein#add('Shougo/dein.vim')
+
+  " Add or remove your Bundles here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('altercation/vim-colors-solarized')
+
+  call dein#add('apachelogs.vim')
+
+  call dein#add('terryma/vim-multiple-cursors')
+
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev' : '3787e5' })
+
+  call dein#end()
+  call dein#save_state()
+
 endif
 
 " Required:
-call neobundle#begin(expand('/root/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-
-NeoBundle 'apachelogs.vim'
-
-NeoBundle 'terryma/vim-multiple-cursors'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Required:
-call neobundle#end()
-
-" Required:
 filetype plugin indent on
+syntax enable
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
-
+if dein#check_install()
+    call dein#install()
+endif
 " }
 
-syntax on
 set mouse=a
 set mousehide
 scriptencoding utf-8
