@@ -1,3 +1,7 @@
+
+Note! when compiling vim use this configure script:
+./configure --enable-gui=gtk2 --enable-pythoninterp --prefix=/usr
+
 git clone git@github.com:jphustman/root.vimfiles.git
 
 ln -s root.vimfiles/.tmux.conf .tmux.conf
