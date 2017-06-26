@@ -1,10 +1,29 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 " vimrc for root
+
+" identify platform
+silent function! OSX()
+    return has('macunix')
+endfunction
+silent function! UNIX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+silent function! WINDOWS()
+    return (has('win16') || has('win32') || has('win64'))
+endfunction
+
+
+
 " NeoBundle
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 set runtimepath+=/root/.vim/bundle/repos/github.com/Shougo/dein.vim
+
+let g:netrw_liststyle=3
+scriptencoding utf-8
+set encoding=utf-8
 
 " Required:
 if dein#load_state('~/.vim/bundle')
@@ -21,7 +40,12 @@ if dein#load_state('~/.vim/bundle')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('altercation/vim-colors-solarized')
 
-  call dein#add('apachelogs.vim')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/nerdtree')
+
+  call dein#add('spf13/PIV')
+
+  call dein#add('vim-scripts/apachelogs.vim')
 
   call dein#add('terryma/vim-multiple-cursors')
 
@@ -44,9 +68,14 @@ if dein#check_install()
 endif
 " }
 
-set mouse=a
+
+syntax on
 set mousehide
 scriptencoding utf-8
+
+set tags=./tags
+
+
 
 "set autowrite
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
@@ -58,6 +87,26 @@ set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
+
+set background=dark
+
+set complete+=kspell
+set ttyfast
+set magic " Better searching
+set lazyredraw
+
+set autoread
+set showmatch
+set matchtime=3
+
+
+
+
+"if &term == 'xterm' || &term == 'screen'
+"	set t_Co=256 "Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+"	set background=light
+"endif
+set term=xterm-256color
 
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
@@ -116,14 +165,72 @@ set foldenable                  " Auto fold code
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
+set showtabline=2
+set noshowmode
+
+set shiftround
+
+set visualbell
+set t_vb=
+
+set title
+
+set comments=sl:/*,mb:*,elx:*/
+
+highlight ColorColumn ctermbg=blue
+call matchadd('ColorColumn', '\%81v', 100)
+
 " }
 
+" NerdTree {
+if isdirectory(expand("/root/.vim/bundle/repos/github.com/scrooloose/nerdtree"))
+
+	map <C-e> <plug>NERDTreeTabsToggle<CR>
+	map <leader>e :NERDTreeFind<CR>
+	nmap <leader>nt :NERDTreeFind<CR>
+
+	let g:NERDTreeShowBookmarks=1
+	let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^.hg$', '^.svn$', '\.bzr$']
+	let g:NERDTreeChDirMode=0
+	let g:NERDTreeQuitOnOpen=0
+	let g:NERDTreeMouseMode=2
+	let g:NERDTreeShowHidden=1
+	let g:NERDTreeKeepTreeInNewTab=1
+	let g:nerdtree_tabs_open_on_gui_startup=0
+
+endif
+
+" Initialize NERDTree as needed
+function! NERDTreeInitAsNeeded()
+	redir => bufoutput
+	buffers!
+	redir END
+	let idx = stridx(bufoutput, "NERD_tree")
+	if idx > -1
+		NERDTreeMirror
+		NERDTreeFind
+		wincmd 1
+	endif
+endfunction
+" }
+
+" set backup
+if has('persistent_undo')
+  set undofile
+  set undolevels=1000
+  set undoreload=10000
+endif
+
+set history=1000
+
+let g:mapleader=","
 
 " Formatting {
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Stop Autocommenting!
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
+set smartindent
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
@@ -132,13 +239,55 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 set tabstop=2
-set shiftwidth=2
-set expandtab
+
+set columns=120
+set lines=40
+set modeline
+set modelines=5
+
+set cmdheight=2
 
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+vnoremap <C-c> "+y
 " }
 
 imap jk <Esc>
 
 
 autocmd BufNewFile,BufRead access.log,error.log set ft=apachelogs
+
+" RegularInitialize directories {
+function! InitializeDirectories()
+    let parent = $HOME
+    let prefix = 'vim'
+    let dir_list = {
+                \ 'backup': 'backupdir',
+                \ 'views': 'viewdir',
+                \ 'swap': 'directory' }
+
+    if has('persistent_undo')
+        let dir_list['undo'] = 'undodir'
+    endif
+
+    let common_dir = parent . '/.' . prefix
+
+    for [dirname, settingname] in items(dir_list)
+        let directory = common_dir . dirname . '/'
+        if exists('*mkdir')
+            if !isdirectory(directory)
+                call mkdir(directory)
+            endif
+        endif
+        if !isdirectory(directory)
+            echo 'Warning: Unable to create backup directory: ' . directory
+            echo 'Try: mkdir -p ' . directory
+        else
+            let directory = substitute(directory, ' ', '\\\\ ', 'g')
+            exec 'set ' . settingname . '=' . directory
+        endif
+    endfor
+endfunction
+call InitializeDirectories()
+" }
+
+
