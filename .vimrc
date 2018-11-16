@@ -14,24 +14,24 @@ endfunction
 
 
 
-" NeoBundle
+" Dein
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/root/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 let g:netrw_liststyle=3
 scriptencoding utf-8
 set encoding=utf-8
 
 " Required:
-if dein#load_state('~/.vim/bundle')
-  call dein#begin(expand('~/.vim/bundle'))
+if dein#load_state('~/.cache/dein')
+  call dein#begin(expand('~/.cache/dein'))
 
   " Let dein manage dein
   " Required:
-  call dein#add('Shougo/dein.vim')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your Bundles here:
   call dein#add('Shougo/neosnippet.vim')

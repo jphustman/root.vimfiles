@@ -6,8 +6,10 @@ git clone git@github.com:jphustman/root.vimfiles.git
 
 ln -s root.vimfiles/.tmux.conf .tmux.conf
 ln -s root.vimfiles/.vimrc .vimrc
+ln -s root.vimfiles/.bashrc .bash_profile #Arch Linux
+ln -s root.vimfiles/.bashrc .bashrc
 
-git clone git@github.com:Shougo/dein.vim .vim/bundle/repos/github.com/Shougo/dein.vim
+git clone git@github.com:Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 call dein#update() to update
 call dein#install() to install
