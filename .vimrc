@@ -50,7 +50,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('terryma/vim-multiple-cursors')
 
   " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev' : '3787e5' })
+  call dein#add('Shougo/deol.nvim')
 
   call dein#end()
   call dein#save_state()
@@ -82,7 +82,7 @@ set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
 set history=1000                    " Store a ton of history (default is 20)
-set spell                           " Spell checking on
+"set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
@@ -162,8 +162,8 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+"set list
+"set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 set showtabline=2
 set noshowmode
