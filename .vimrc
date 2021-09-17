@@ -21,41 +21,41 @@ endif
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+call dein#begin(expand('~/.cache/dein/repos/github.com'))
+
+" Let dein manage dein
+" Required:
+call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+" Add or remove your Bundles here:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('tpope/vim-fugitive')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('altercation/vim-colors-solarized')
+
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('scrooloose/nerdtree')
+
+call dein#add('spf13/PIV')
+
+call dein#add('vim-scripts/apachelogs.vim')
+
+call dein#add('terryma/vim-multiple-cursors')
+
+" deol.nvim requires Neovim 0.3+ or Vim 8.2.1978+
+if v:versionlong >= 80201978
+    call dein#add('Shougo/deol.nvim')
+endif
+
+call dein#end()
+call dein#save_state()
+
+
 let g:netrw_liststyle=3
 scriptencoding utf-8
 set encoding=utf-8
 
-" Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin(expand('~/.cache/dein'))
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your Bundles here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('altercation/vim-colors-solarized')
-
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('scrooloose/nerdtree')
-
-  call dein#add('spf13/PIV')
-
-  call dein#add('vim-scripts/apachelogs.vim')
-
-  call dein#add('terryma/vim-multiple-cursors')
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/deol.nvim')
-
-  call dein#end()
-  call dein#save_state()
-
-endif
 
 " Required:
 filetype plugin indent on
