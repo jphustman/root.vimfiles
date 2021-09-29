@@ -16,16 +16,22 @@ endfunction
 
 " Dein
 if &compatible
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+" For Solaris (Also currently only version 2.2 is supported)
+if substitute(system('uname'), "\n", "", "") == "SunOS"
+    " set at system level so the same for everyone	
+    set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
+else
+    " figure out rest when working on other platforms
+endif
 
-call dein#begin(expand('~/.cache/dein/repos/github.com'))
+call dein#begin(expand('/usr/share/vim/.cache/dein/repos'))
 
 " Let dein manage dein
 " Required:
-call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your Bundles here:
 call dein#add('Shougo/neosnippet.vim')
@@ -69,7 +75,6 @@ endif
 " }
 
 
-syntax on
 set mousehide
 scriptencoding utf-8
 
@@ -115,7 +120,7 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
-color solarized             " Load a colorscheme
+colorscheme solarized             " Load a colorscheme
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
