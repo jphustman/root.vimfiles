@@ -24,7 +24,8 @@ if substitute(system('uname'), "\n", "", "") == "SunOS"
     " set at system level so the same for everyone	
     set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 else
-    " figure out rest when working on other platforms
+    " figure out rest when working on other platforms (Same on Ubuntu)
+    set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 endif
 
 call dein#begin(expand('/usr/share/vim/.cache/dein/repos'))
