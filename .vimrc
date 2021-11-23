@@ -28,7 +28,7 @@ else
     set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 endif
 
-call dein#begin(expand('/usr/share/vim/.cache/dein/repos'))
+call dein#begin(expand('/usr/share/vim/.cache/dein'))
 
 " Let dein manage dein
 " Required:
@@ -40,9 +40,12 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('tpope/vim-fugitive')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('altercation/vim-colors-solarized')
+call dein#add('junegunn/vim-easy-align')                                                                                                                                                                            
 
 call dein#add('scrooloose/nerdcommenter')
 call dein#add('scrooloose/nerdtree')
+
+call dein#add('vim-syntastic/syntastic')
 
 call dein#add('spf13/PIV')
 
@@ -185,6 +188,21 @@ set comments=sl:/*,mb:*,elx:*/
 
 highlight ColorColumn ctermbg=blue
 call matchadd('ColorColumn', '\%81v', 100)
+
+" }
+
+
+" { Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perlcritic']
 
 " }
 
