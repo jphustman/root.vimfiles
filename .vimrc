@@ -203,6 +203,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perlcritic']
+let g:syntastic_php_checkers = ['phpcs']
+let g:syntastic_html_checkers = ['tidy', 'jshint', 'w3', 'validator']
+let g:syntastic_javascript_jslint_args = '--browser'
+let g:syntastic_javascript_checkers = ['jslint']
 
 " }
 
