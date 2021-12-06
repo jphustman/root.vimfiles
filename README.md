@@ -21,7 +21,7 @@ ln -s root.vimfiles/.bashrc .bashrc
 
 cd /usr/share/vim
 
-git clone git@github.com:Shougo/dein.vim .cache/dein/repos/github.com/Shougo/dein.vim
+git clone git@github.com:Shougo/dein.vim /usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 
 - In Solaris you need to go into that folder and git checkout 2.2
 

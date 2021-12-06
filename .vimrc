@@ -32,7 +32,7 @@ call dein#begin(expand('/usr/share/vim/.cache/dein'))
 
 " Let dein manage dein
 " Required:
-call dein#add('/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('Shougo/dein.vim')
 
 " Add or remove your Bundles here:
 call dein#add('Shougo/neosnippet.vim')
