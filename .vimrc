@@ -13,6 +13,14 @@ silent function! WINDOWS()
     return (has('win16') || has('win32') || has('win64'))
 endfunction
 
+" Maybe this works?
+silent function! SUNOS()
+    if substitute(system('uname'), "\n", "", "") == "SunOS"
+        return true
+    endif
+endfunction
+
+
 set nocompatible    " Must be first line
 if !WINDOWS()
     set shell=/bin/bash
@@ -20,14 +28,7 @@ endif
 
 " Dein (Bundles) {
 
-" " For Solaris (Also currently only version 2.2 dein is supported)
-" if substitute(system('uname'), "\n", "", "") == "SunOS"
-"     " set at system level so the same for everyone
-"     set runtimepath+=/usr/share/vim/.cache/repos/github.com/Shougo/dein.vim
-" else
-    " figure out rest when working on other platforms (Same on Ubuntu)
-    set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
-" endif
+set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('/usr/share/vim/.cache/dein'))
 
