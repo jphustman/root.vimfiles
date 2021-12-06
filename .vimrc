@@ -26,15 +26,15 @@ endif
 "     set runtimepath+=/usr/share/vim/.cache/repos/github.com/Shougo/dein.vim
 " else
     " figure out rest when working on other platforms (Same on Ubuntu)
-    set runtimepath+=/usr/share/vim/.cache/repos/github.com/Shougo/dein.vim
+    set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
 " endif
 
-call dein#begin(expand('/usr/share/vim/.cache'))
+call dein#begin(expand('/usr/share/vim/.cache/dein'))
 
 " Let dein manage dein
 " Required:
-call dein#add('Shougo/dein.vim')
-" call dein#add('/usr/share/vim/.cache/repos/github.com/Shougo/dein.vim')
+" call dein#add('Shougo/dein.vim')
+call dein#add('/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
