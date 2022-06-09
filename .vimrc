@@ -52,7 +52,7 @@ call dein#add('vim-syntastic/syntastic')
 
 call dein#add('spf13/PIV')
 
-call dein#add('vim-scripts/nginx.vim')
+call dein#add('chr4/nginx.vim')
 call dein#add('vim-scripts/apachelogs.vim')
 
 call dein#add('terryma/vim-multiple-cursors')
