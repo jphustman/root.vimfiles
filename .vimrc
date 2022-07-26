@@ -45,6 +45,8 @@ call dein#add('tacahiroy/ctrlp-funky')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('junegunn/vim-easy-align')
 
+call dein#add('cflint/cflint-syntastic')
+
 call dein#add('preservim/nerdcommenter')
 call dein#add('scrooloose/nerdtree')
 
@@ -501,6 +503,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cf_checkers=['cflint']
+let g:syntastic_cfms_checkers=['cflint']
+let g:syntastic_cfscript_checkers=['cflint']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perlcritic']
 let g:syntastic_php_checkers = ['phpcs']
