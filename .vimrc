@@ -54,7 +54,7 @@ call dein#add('vim-syntastic/syntastic')
 
 call dein#add('spf13/PIV')
 
-call dein#add('vim-scripts/nginx.vim')
+call dein#add('chr4/nginx.vim')
 call dein#add('vim-scripts/apachelogs.vim')
 
 call dein#add('terryma/vim-multiple-cursors')
@@ -80,7 +80,7 @@ endif
 "set term=xterm-256color
 
 
-set background=dark
+"set background=dark
 
 " Allow to trigger background
 function! ToggleBG()
@@ -96,7 +96,7 @@ noremap <leader>bg :call ToggleBG()<CR>
 
 " Required:
 filetype plugin indent on    " Automatically detect file types 
-syntax on                    " Syntax highlighting
+"syntax on                    " Syntax highlighting
 set mouse=a                  " Automatically enable mouse usage
 set mousehide                " Hide the mouse cursor while typing
 scriptencoding utf-8
@@ -147,12 +147,14 @@ let g:skipview_files = [
 " }
 
 " Vim UI {
-if filereadable(expand("/usr/share/vim/.cache/repos/github.com/altercation/vim-colors-solarized/colors/solarized.vim"))
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
-color solarized             " Load a colorscheme
+if filereadable(expand("/usr/share/vim/.cache/dein/repos/github.com/altercation/vim-colors-solarized/colors/solarized.vim"))
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
+    syntax enable
+    set background=dark
+    colorscheme solarized             " Load a colorscheme
 endif
 
 set tabpagemax=15               " Only show 15 tabs
