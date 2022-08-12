@@ -99,6 +99,9 @@ set mouse=a                  " Automatically enable mouse usage
 set mousehide                " Hide the mouse cursor while typing
 scriptencoding utf-8
 
+set modeline
+set modelines=5
+
 "set autowrite
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
