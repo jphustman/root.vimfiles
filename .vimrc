@@ -512,6 +512,7 @@ let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_html_checkers = ['tidy', 'jshint', 'w3', 'validator']
 let g:syntastic_javascript_jslint_args = '--browser'
 let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_sh_checkers = ['shellcheck']
 
 " }
 
