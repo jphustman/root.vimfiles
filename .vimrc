@@ -102,6 +102,9 @@ set mouse=a                  " Automatically enable mouse usage
 set mousehide                " Hide the mouse cursor while typing
 scriptencoding utf-8
 
+set modeline
+set modelines=5
+
 "set autowrite
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
@@ -515,6 +518,7 @@ let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_html_checkers = ['tidy', 'jshint', 'w3', 'validator']
 let g:syntastic_javascript_jslint_args = '--browser'
 let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_sh_checkers = ['shellcheck']
 
 " }
 
