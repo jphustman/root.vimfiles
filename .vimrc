@@ -40,10 +40,13 @@ call dein#add('/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-surround')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('tacahiroy/ctrlp-funky')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('junegunn/vim-easy-align')
+
+call dein#add('cflint/cflint-syntastic')
 
 call dein#add('preservim/nerdcommenter')
 call dein#add('scrooloose/nerdtree')
@@ -52,7 +55,7 @@ call dein#add('vim-syntastic/syntastic')
 
 call dein#add('spf13/PIV')
 
-call dein#add('vim-scripts/nginx.vim')
+call dein#add('chr4/nginx.vim')
 call dein#add('vim-scripts/apachelogs.vim')
 
 call dein#add('terryma/vim-multiple-cursors')
@@ -98,6 +101,9 @@ filetype plugin indent on    " Automatically detect file types
 set mouse=a                  " Automatically enable mouse usage
 set mousehide                " Hide the mouse cursor while typing
 scriptencoding utf-8
+
+set modeline
+set modelines=5
 
 "set autowrite
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
@@ -502,12 +508,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cf_checkers=['cflint']
+let g:syntastic_cfms_checkers=['cflint']
+let g:syntastic_cfscript_checkers=['cflint']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perlcritic']
 let g:syntastic_php_checkers = ['phpcs']
 let g:syntastic_html_checkers = ['tidy', 'jshint', 'w3', 'validator']
 let g:syntastic_javascript_jslint_args = '--browser'
 let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_sh_checkers = ['shellcheck']
 
 " }
 
