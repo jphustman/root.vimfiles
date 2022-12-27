@@ -211,6 +211,14 @@ set listchars=tab:>-,trail:-,extends:>,nbsp:. " Highlight problematic whitespace
 
 " }
 
+" EasyAlign {
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }
+
 " Formatting {
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
