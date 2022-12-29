@@ -28,15 +28,21 @@ endif
 
 " Dein (Bundles) {
 
-set runtimepath+=/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim
+" Set dein base path (required)
+let s:dein_base = '/usr/share/vim/.cache/dein'
 
-call dein#begin(expand('/usr/share/vim/.cache/dein'))
+" Set dein source path (required)
+let s:dein_src = '/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim'
 
-" Let dein manage dein
-" Required:
-" call dein#add('Shougo/dein.vim')
-call dein#add('/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim')
+" Set dein runtime path (required)
+execute 'set runtimepath+=' . s:dein_src
 
+" Call dein initialization (required)
+call dein#begin(s:dein_base)
+
+call dein#add(s:dein_src)
+
+" Plugins go here
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('tpope/vim-fugitive')
@@ -66,7 +72,6 @@ if v:versionlong >= 80201978
 endif
 
 call dein#end()
-call dein#save_state()
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
