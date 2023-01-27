@@ -421,6 +421,7 @@ imap jk <Esc>
 " Make Ctrl-C copy
 vnoremap <C-c> "+y
 
+map <Leader>ngx :!nginx -s reload<Cr>
 
 " }
 
