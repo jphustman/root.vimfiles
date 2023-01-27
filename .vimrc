@@ -425,7 +425,7 @@ vnoremap <C-c> "+y
 " Restart NGINX
 map <Leader>ngx :!nginx -s reload<Cr>
 " Restart Apache
-map <Leader>sra :!svcadm restart apache24<Cr>
+map <Leader>rsa :!svcadm restart apache24<Cr>
 
 
 " }
