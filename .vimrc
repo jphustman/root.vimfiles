@@ -1,6 +1,7 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
 " vimrc for root
 " With snippets from https://github.com/spf13/spf13-vim
+set nocompatible    " Must be first line
 
 " identify platform
 silent function! OSX()
@@ -20,22 +21,36 @@ silent function! SUNOS()
     endif
 endfunction
 
-
-set nocompatible    " Must be first line
 if !WINDOWS()
     set shell=/bin/bash
 endif
 
-" Dein (Bundles) {
+" Dein {
+
+let $CACHE = expand('~/.cache')
+if !($CACHE->isdirectory())
+  call mkdir($CACHE, 'p')
+endif
+if &runtimepath !~# '/dein.vim'
+  let s:dir = 'dein.vim'->fnamemodify(':p')
+  if !(s:dir->isdirectory())
+    let s:dir = $CACHE .. '/dein/repos/github.com/Shougo/dein.vim'
+    if !(s:dir->isdirectory())
+      execute '!git clone -c "advice.detachedHead=false" --branch 2.2 https://github.com/Shougo/dein.vim --single-branch' s:dir
+    endif
+  endif
+  execute 'set runtimepath^='
+        \ .. s:dir->fnamemodify(':p')->substitute('[/\\]$', '', '')
+endif
 
 " Set dein base path (required)
-let s:dein_base = '/usr/share/vim/.cache/dein'
+let s:dein_base = '~/.cache/dein/'
 
 " Set dein source path (required)
-let s:dein_src = '/usr/share/vim/.cache/dein/repos/github.com/Shougo/dein.vim'
+let s:dein_src = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
 
 " Set dein runtime path (required)
-execute 'set runtimepath+=' . s:dein_src
+execute 'set runtimepath+=' .. s:dein_src
 
 " Call dein initialization (required)
 call dein#begin(s:dein_base)
@@ -78,7 +93,9 @@ call dein#end()
 if dein#check_install()
     call dein#install()
 endif
+
 " }
+
 
 " General {
 
@@ -156,7 +173,7 @@ let g:skipview_files = [
 " }
 
 " Vim UI {
-if filereadable(expand("/usr/share/vim/.cache/dein/repos/github.com/altercation/vim-colors-solarized/colors/solarized.vim"))
+if filereadable(expand("~/.cache/dein/repos/github.com/altercation/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
