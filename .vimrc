@@ -68,7 +68,7 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('junegunn/vim-easy-align')
 
 call dein#add('cflint/cflint-syntastic')
-call dein#add('jphustman/cf-utils.vim');
+call dein#add('jphustman/cf-utils.vim')
 call dein#add('preservim/nerdcommenter')
 call dein#add('scrooloose/nerdtree')
 
@@ -192,12 +192,13 @@ highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 "highlight clear CursorLineNr    " Remove highlight color from current line number
 
-if has('cmdline_info')
+"if has('cmdline_info')
   set ruler                   " Show the ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
   set showcmd                    " Show partial commands in status line and
+  set cmdheight=2
                                 " Selected characters/lines in visual mode
-endif
+"endif
 
 if has('statusline')
   set laststatus=2
@@ -216,6 +217,7 @@ endif
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
+set sidescroll=5
 set showmatch                   " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
@@ -227,6 +229,7 @@ set wildmode=list:longest,full  " Command <Tab> completion, list matches, then l
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
+set foldlevelstart=0
 set foldenable                  " Auto fold code 
 set list
 set listchars=tab:>-,trail:-,extends:>,nbsp:. " Highlight problematic whitespace
@@ -249,12 +252,13 @@ set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
+set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 "set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
 
 
@@ -283,14 +287,19 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
-" Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Stop Autocommenting!
 " }
 
 
+" autocommands {
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Stop Autocommenting!
+autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType scss setlocal ts=2 sw=2 expandtab
+autocmd FileType css setlocal ts=2 sw=2 expandtab
+autocmd FileType html setlocal ts=2 sw=2 expandtab
+" }
 
 
 
@@ -596,15 +605,15 @@ endfunction
 call InitializeDirectories()
 " }
 
-" Strip whitespace {
+" remove trailing whitespace {
+autocmd FileType * autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 function! StripTrailingWhitespace()
-    " Preparation: save last search, and cursor position.
+    " save last search and cursor position
     let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " do the business:
+    let l = line('.')
+    let c = col('.')
+
     %s/\s\+$//e
-    " clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
 endfunction
