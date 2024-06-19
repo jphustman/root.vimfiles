@@ -68,7 +68,7 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('junegunn/vim-easy-align')
 
 call dein#add('cflint/cflint-syntastic')
-
+call dein#add('jphustman/cf-utils.vim');
 call dein#add('preservim/nerdcommenter')
 call dein#add('scrooloose/nerdtree')
 
